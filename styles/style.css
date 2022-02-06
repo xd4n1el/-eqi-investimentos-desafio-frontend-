@@ -1,0 +1,202 @@
+html, body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+}
+
+*::selection {
+    background-color: transparent;
+}
+
+.container {
+    position: fixed;
+    top: 80px;
+    background-color: rgb(240, 240, 240);
+    width: 90%;
+    max-width: 1400px;
+    height: 600px;
+    display: flex;
+    flex-direction: row;
+}
+
+.mainTitle {
+    width: 100%;
+    max-width: 1400px;
+    height: 50px;
+    z-index: 10;
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    margin-top: 5px;
+}
+
+.mainTitle h1 {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.calculator {
+    position: absolute;
+    transform: translateY(100px);
+    margin-left: 30px;
+    height: 400px;
+    width: 350px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+}
+
+.calculator h2 {
+    font-size: 18px;
+    font-weight: bold;
+    height: 25px;
+    width: 400px;
+}
+
+.simulator {
+    width: 150px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.simulator p {
+    font-size: 10px;
+    height: 15px;
+    font-weight: lighter;
+}
+
+.infoIcon {
+    height: 15px;
+    margin-top: 5px;
+}
+
+.infoIcon img {
+    width: 17px;
+    height: 17px;
+}
+
+.options, .optionsTwo {
+    display: flex;
+    justify-content: flex-start;
+    border: solid 1px black;
+    border-radius: 5px;
+    height: 32px;
+    width: 150px;
+    overflow: hidden;
+}
+
+.options ul, .optionsTwo ul {
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    padding: 0;
+    width: 148px;
+}
+
+.options ul {
+    width: 150px;
+}
+
+.options li, .optionsTwo li {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: nowrap;
+    cursor: pointer;
+}
+
+.options li {
+    width: 80px;
+    height: 40px;
+    border-left: solid 2px black;
+    border-right: solid 2px black;
+}
+
+.options li:first-child {
+    border-left: 0px;
+}
+
+.optionsTwo li {
+    width: 52px;
+    height: 40px;
+    border: solid 1px black;
+}  
+
+.options p, .optionsTwo p{
+    pointer-events: none;
+    text-decoration: none;
+}
+
+#Arrow, #Arrow2, #Arrow3, #Arrow4, #Arrow5 {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    margin-top: 7px;
+    margin-right: 27px;
+    pointer-events: none;
+}
+
+#Arrow2, #Arrow5 {
+    margin-right: 37px;
+}
+
+.BGtransformation {
+    background-color: rgb(253, 160, 53);
+}
+
+.colorChange {
+    color: white;
+    transform: translateX(5px);
+}
+
+.invisible {
+    visibility: hidden;
+}
+
+.visible {
+    visibility: visible;
+}
+
+.valuesCalc {
+    margin-top: 20px;
+    height: 220px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.textStyle {
+    background-color: transparent;
+    border: none;
+    border-bottom: solid 1px black;
+    resize: none;
+}
+
+.textStyle::selection {
+    background-color: rgb(64, 115, 255);
+}
+
+textarea:focus, input:focus, select:focus  {
+    box-shadow: 0 0 0 0;
+    border: 0 none;
+    outline: 0;
+    border-bottom: solid 1px black;
+}
+
+.red {
+    color: red;
+}
+
+#error, #error2, #error3, #error4, #error5, #error6 {
+    font-size: 9px;
+    color: red;
+}
