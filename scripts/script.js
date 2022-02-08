@@ -1,79 +1,83 @@
 function checkArrowShow(name1, name2, name3) {
-    let position = document.getElementById(name1);
-    let element = document.getElementById(name2);
-    let paragrafo = document.getElementById(name3);
+    const elementPosition = document.getElementById(name1);
+    const arrowElement = document.getElementById(name2);
+    const paragraphElement = document.getElementById(name3);
 
-    position.addEventListener('click', function () {
-        position.classList.toggle('BGtransformation');
-        element.classList.toggle('visible');
-        paragrafo.classList.toggle('colorChange');
+    elementPosition.addEventListener('click', function () {
+        elementPosition.classList.toggle('BGtransformation');
+        arrowElement.classList.toggle('visible');
+        paragraphElement.classList.toggle('colorChange');
+
     }())
 }
 
-function checkArrowClick() {
-    const elements = {
-        name: 'item1',
-        name2: 'item2',
-        name3: 'item3',
-        name4: 'item4',
-        name5: 'item5',
-        arrow: 'Arrow',
-        arrow2: 'Arrow2',
-        arrow3: 'Arrow3',
-        arrow4: 'Arrow4',
-        arrow5: 'Arrow5',
-        paragraph: 'paragraph',
-        paragraph2: 'paragraph2',
-        paragraph3: 'paragraph3',
-        paragraph4: 'paragraph4',
-        paragraph5: 'paragraph5',
-    };
+function checkArrowClick(name) {
+    const classes = {
+        bgColor: 'BGtransformation',
+        visible: 'visible',
+        paint: 'colorChange'
+    }
 
-    window.addEventListener('click', function (event) {
-        const currentElement = event.target;
-        const id = currentElement.id;
-        const position = document.getElementById(elements.name);
-        const positionTwo = document.getElementById(elements.name2);
-        const positionThree = document.getElementById(elements.name3);
-        const positionFour = document.getElementById(elements.name4);
-        const positionFive = document.getElementById(elements.name5);
+    const options = document.getElementById(name);
+    const arr = [];
+    let filterArr = [];
+    let idConvertString;
+    let secondIdConvertString;
+    
+    options.addEventListener('click', function(e) {
+        const currentElement = e.target;
+        const id = currentElement.id.toString();
+        const position = document.getElementById(id)
+        const arrow = position.children[0].id.toString();
+        const paragraph = position.children[1].id.toString();
 
-        if (id == elements.name && positionTwo.classList.contains('BGtransformation')) {
-            checkArrowShow(elements.name2, elements.arrow2, elements.paragraph2)
-            checkArrowShow(elements.name, elements.arrow, elements.paragraph)
-        } else if (id == elements.name2 && position.classList.contains('BGtransformation')) {
-            checkArrowShow(elements.name, elements.arrow, elements.paragraph)
-            checkArrowShow(elements.name2, elements.arrow2, elements.paragraph2)
-        } else if (id == elements.name3 && positionFour.classList.contains('BGtransformation')) {
-            checkArrowShow(elements.name4, elements.arrow4, elements.paragraph4)
-            checkArrowShow(elements.name3, elements.arrow3, elements.paragraph3)
-        } else if (id == elements.name4 && positionThree.classList.contains('BGtransformation')) {
-            checkArrowShow(elements.name3, elements.arrow3, elements.paragraph3)
-            checkArrowShow(elements.name4, elements.arrow4, elements.paragraph4)
-        } else if (id == elements.name4 && positionFive.classList.contains('BGtransformation')) {
-            checkArrowShow(elements.name5, elements.arrow5, elements.paragraph5)
-            checkArrowShow(elements.name4, elements.arrow4, elements.paragraph4)
-        } else if (id == elements.name5 && positionThree.classList.contains('BGtransformation')) {
-            checkArrowShow(elements.name3, elements.arrow3, elements.paragraph3)
-            checkArrowShow(elements.name5, elements.arrow5, elements.paragraph5)
-        } else if (id == elements.name5 && positionFour.classList.contains('BGtransformation')) {
-            checkArrowShow(elements.name4, elements.arrow4, elements.paragraph4)
-            checkArrowShow(elements.name5, elements.arrow5, elements.paragraph5)
-        } else if (id == elements.name3 && positionFive.classList.contains('BGtransformation')) {
-            checkArrowShow(elements.name5, elements.arrow5, elements.paragraph5)
-            checkArrowShow(elements.name3, elements.arrow3, elements.paragraph3)
-        } else if (id == elements.name) {
-            checkArrowShow(elements.name, elements.arrow, elements.paragraph)
-        } else if (id == elements.name2) {
-            checkArrowShow(elements.name2, elements.arrow2, elements.paragraph2)
-        } else if (id == elements.name3) {
-            checkArrowShow(elements.name3, elements.arrow3, elements.paragraph3)
-        } else if (id == elements.name4) {
-            checkArrowShow(elements.name4, elements.arrow4, elements.paragraph4)
-        } else if (id == elements.name5) {
-            checkArrowShow(elements.name5, elements.arrow5, elements.paragraph5)
+        arr.push(id);
+
+        if(arr.length > 1) {
+            filterArr = arr.filter((id, i) => arr.indexOf(id) === i);
+            const foundElements = filterArr.find(element => element != id);
+            idConvertString = foundElements.toString();
+
+            const verifPosition = document.getElementById(idConvertString);
+            const verifArrow = verifPosition.children[0];
+            const verifParagraph = verifPosition.children[1];
+
+            if(filterArr.length > 1 && filterArr.length <= 2 && 
+                idConvertString != id) {
+
+                verifPosition.classList.remove(classes.bgColor);
+                verifArrow.classList.remove(classes.visible);
+                verifParagraph.classList.remove(classes.paint);
+
+                checkArrowShow(id, arrow, paragraph) 
+
+            } else if(filterArr.length > 2 &&  idConvertString != id) {
+
+                const foundMoreElements = filterArr.find(
+                element => element != id && element != foundElements);
+
+                secondIdConvertString = foundMoreElements.toString();
+                const verifOtherPosition = document.getElementById(secondIdConvertString);
+                const verifOtherArrow = verifOtherPosition.children[0];
+                const verifOtherParagraph = verifOtherPosition.children[1];
+
+                verifPosition.classList.remove(classes.bgColor);
+                verifArrow.classList.remove(classes.visible);
+                verifParagraph.classList.remove(classes.paint);
+
+                verifOtherPosition .classList.remove(classes.bgColor);
+                verifOtherArrow.classList.remove(classes.visible);
+                verifOtherParagraph.classList.remove(classes.paint);
+
+                checkArrowShow(id, arrow, paragraph) 
+            }
+            
+        } else {
+                checkArrowShow(id, arrow, paragraph)
         }
+
     })
+   
 }
 
 function validateInput(input, title, error) {
@@ -95,35 +99,22 @@ function validateInput(input, title, error) {
     })
 }
 
-function executeInput() {
-    const elements = {
-        input: 'textArea',
-        input2: 'textArea2',
-        input3: 'textArea3',
-        input4: 'textArea4',
-        input5: 'textArea5',
-        input6: 'textArea6',
-        title: 'title',
-        title2: 'title2',
-        title3: 'title3',
-        title4: 'title4',
-        title5: 'title5',
-        title6: 'title6',
-        error: 'error',
-        error2: 'error2',
-        error3: 'error3',
-        error4: 'error4',
-        error5: 'error5',
-        error6: 'error6',
-    };
+function executeInput(name) {
+    
+    const calculatorPosition = document.getElementById(name)
 
-    validateInput(elements.input, elements.title, elements.error)
-    validateInput(elements.input2, elements.title2, elements.error2)
-    validateInput(elements.input3, elements.title3, elements.error3)
-    validateInput(elements.input4, elements.title4, elements.error4)
-    validateInput(elements.input5, elements.title5, elements.error5)
-    validateInput(elements.input6, elements.title6, elements.error6)
+    calculatorPosition.addEventListener('click', function(e) {
+        const currentElement = e.target;
+        const id = currentElement.id.toString();
+        const inputPosition = document.getElementById(id);
+        const titlePosition = inputPosition.previousElementSibling.id;
+        const errorMessage = inputPosition.nextElementSibling.id;
+        
+        validateInput(id, titlePosition, errorMessage)
+    })
 }
 
-executeInput()
-checkArrowClick()
+executeInput('findInput')
+executeInput('findInput2')
+checkArrowClick('options')
+checkArrowClick('optionsTwo')

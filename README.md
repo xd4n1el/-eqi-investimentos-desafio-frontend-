@@ -39,8 +39,9 @@ HTML:
  - a função do input TextArea também está contida dentro de outra função, porém, essa é para
  sua execução, facilitando meu trabalho com os id's.
 
- passos futuros:
 
- - botao de limpar campos;
- - botao de simular;
- - conexão com a api fornecida.
+08/02/2022 changes:
+
+ - melhora nas funções do script, código mais leve e implementação de armazenamento dos ids e um
+ array, ficando um pouco melhor
+ - forma de captar o id através de um evento de mouse que o busca e faz as validações necessárias

@@ -83,7 +83,7 @@ html, body {
     height: 17px;
 }
 
-.options, .optionsTwo {
+#options, #optionsTwo {
     display: flex;
     justify-content: flex-start;
     border: solid 1px black;
@@ -93,7 +93,7 @@ html, body {
     overflow: hidden;
 }
 
-.options ul, .optionsTwo ul {
+#options ul, #optionsTwo ul {
     display: flex;
     flex-direction: row;
     margin: 0;
@@ -101,11 +101,11 @@ html, body {
     width: 148px;
 }
 
-.options ul {
+#options ul {
     width: 150px;
 }
 
-.options li, .optionsTwo li {
+#options li, #optionsTwo li {
     list-style: none;
     display: flex;
     flex-direction: row;
@@ -114,24 +114,24 @@ html, body {
     cursor: pointer;
 }
 
-.options li {
+#options li {
     width: 80px;
     height: 40px;
     border-left: solid 2px black;
     border-right: solid 2px black;
 }
 
-.options li:first-child {
+#options li:first-child {
     border-left: 0px;
 }
 
-.optionsTwo li {
+#optionsTwo li {
     width: 52px;
     height: 40px;
     border: solid 1px black;
 }  
 
-.options p, .optionsTwo p{
+#options p, #optionsTwo p {
     pointer-events: none;
     text-decoration: none;
 }
@@ -166,12 +166,25 @@ html, body {
     visibility: visible;
 }
 
-.valuesCalc {
+#valuesCalc {
     margin-top: 20px;
     height: 220px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+}
+
+#valuesCalc ul {
+    margin: 0;
+    padding: 0;
+}
+
+#valuesCalc li {
+    list-style: none;
+}
+
+#valuesCalc p {
+    pointer-events: none;
 }
 
 .textStyle {
