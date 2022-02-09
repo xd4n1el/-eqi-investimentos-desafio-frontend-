@@ -11,6 +11,19 @@ function checkArrowShow(name1, name2, name3) {
     }())
 }
 
+function checkArrowClickV2(name) {
+
+    const options = document.getElementById(name);
+    
+    options.addEventListener('click', function(e) {
+        const currentElement = e.target;
+        currentElement.classList.toggle('active');
+        currentElement.sibling.toggle('active');
+    })
+   
+}
+
+
 function checkArrowClick(name) {
     const classes = {
         bgColor: 'BGtransformation',
@@ -116,5 +129,5 @@ function executeInput(name) {
 
 executeInput('findInput')
 executeInput('findInput2')
-checkArrowClick('options')
+checkArrowClickV2('options')
 checkArrowClick('optionsTwo')

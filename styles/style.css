@@ -149,6 +149,14 @@ html, body {
     margin-right: 37px;
 }
 
+.active {
+    background-color: rgb(253, 160, 53);
+}
+
+.active img {
+    visibility: visible;
+}
+
 .BGtransformation {
     background-color: rgb(253, 160, 53);
 }
