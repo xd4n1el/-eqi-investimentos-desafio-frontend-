@@ -25,35 +25,60 @@ function changeOtherOptionStyle() {
     
     options.addEventListener('click', function(e) {
         const currentElement = e.target;
-        const nextBrother = currentElement.nextElementSibling;
-        const prevBrother = currentElement.previousElementSibling;
+        let nextBrother = currentElement.nextElementSibling;
+        let prevBrother = currentElement.previousElementSibling;
         
-        currentElement.classList.toggle('active')
-
-        while(nextBrother) {
-            if(nextBrother.classList.contains('active')) {
-                nextBrother.classList.toggle('active');
-            }
-            
-            nextBrother = nextBrother.nextElementSibling;
-        }
+        currentElement.classList.toggle('active');
 
         while(prevBrother) {
             if(prevBrother.classList.contains('active')) {
                 prevBrother.classList.toggle('active');
             }
-            
+
             prevBrother = prevBrother.previousElementSibling;
         }
 
+        while(nextBrother) {
+            if(nextBrother.classList.contains('active')) {
+                nextBrother.classList.toggle('active');
+            }
+
+            nextBrother = nextBrother.nextElementSibling;
+        }
+            
     }) 
 }
 
-function submitBtn() {
+function validateSubmitButton() {
     const btn = document.getElementById('submit');
+
+    const input = document.querySelectorAll('input');
+    const redClasses = document.querySelectorAll('.red');
+    const isVisible = document.querySelectorAll('.visible');
+    const isActive = document.querySelectorAll('.active')
+
+    for(let j = 0; j < isActive.length; j++) {
+        if(isActive.length > 1) {
+            for (let i = 0; i < input.length; i++) {
+                if(input[i].value != '' && redClasses.length < 1 && isVisible.length < 1) {
+                    btn.classList.add('submit-active')
+                } else {
+                    btn.classList.remove('submit-active')
+                }
+            }
+        }
+    }
+}
+
+function executeSubmitButton() {
+    const options = document.getElementById('options');
+    const optionsTwo = document.getElementById('optionsTwo');
+
     const input = document.querySelectorAll('input');
 
-   
+    input.forEach(e => e.addEventListener('keypress', validateSubmitButton))
+    options.addEventListener('click', validateSubmitButton)
+    optionsTwo.addEventListener('click', validateSubmitButton)
 }
 
 
@@ -65,10 +90,10 @@ function validateInput(input) {
 
     inputBox.addEventListener('keyup', function() {
 
-        if(inputBox.value.length < 1 ) {
+        if(inputBox.value.length < 1) {
             titleChange.classList.remove('red')
             showErrorMessage.classList.remove('visible')
-        } else if(isNaN(inputBox.value)) {
+        } else if(isNaN(inputBox.value) && inputBox.value.length >= 1) {
             titleChange.classList.add('red')
             showErrorMessage.classList.add('visible')
         }  else {
@@ -97,7 +122,6 @@ function executeInput(name) {
     calculatorPosition.addEventListener('click', function(e) {
         const currentElement = e.target;
         const id = currentElement.id;
-        checkTab()
         validateInput(id)
     })
 
@@ -127,4 +151,4 @@ executeInput('findInput')
 executeInput('findInput2')
 checkTab()
 cleanButton()
-submitBtn()
+executeSubmitButton()

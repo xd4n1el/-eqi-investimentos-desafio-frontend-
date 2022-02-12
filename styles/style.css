@@ -13,19 +13,18 @@ html, body {
 }
 
 .container {
-    position: fixed;
-    top: 80px;
+    margin-top: 80px;
     background-color: rgb(240, 240, 240);
-    width: 90%;
+    width: 90vw;
     max-width: 1400px;
     height: 600px;
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
 }
 
 .mainTitle {
     width: 100%;
-    max-width: 1400px;
     height: 50px;
     z-index: 10;
     background-color: transparent;
@@ -40,16 +39,13 @@ html, body {
 }
 
 .calculator {
-    position: absolute;
-    transform: translateY(100px);
-    margin-left: 30px;
-    height: 400px;
+    height: 450px;
     width: 350px;
+    margin-left: 40px;
     display: flex;
     justify-content: space-between;
     flex-direction: row;
     flex-wrap: wrap;
-    box-sizing: border-box;
 }
 
 .calculator h2 {
@@ -57,6 +53,7 @@ html, body {
     font-weight: bold;
     height: 25px;
     width: 400px;
+    margin: 0;
 }
 
 .simulator {
@@ -85,24 +82,16 @@ html, body {
 
 #options, #optionsTwo {
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
+    flex-direction: row;
+    width: 147px;
+    height: 31px;
     border: solid 1px black;
     border-radius: 5px;
-    height: 32px;
-    width: 150px;
-    overflow: hidden;
-}
-
-#options ul, #optionsTwo ul {
-    display: flex;
-    flex-direction: row;
     margin: 0;
     padding: 0;
-    width: 148px;
-}
-
-#options ul {
-    width: 150px;
+    width: 147px;
+    overflow: hidden;
 }
 
 #options li, #optionsTwo li {
@@ -115,55 +104,57 @@ html, body {
 }
 
 #options li {
-    width: 80px;
-    height: 40px;
+    width: 75px;
+}
+
+#options li:last-child {
     border-left: solid 2px black;
+}
+
+
+#optionsTwo li {
+    width: 55px;
+}
+
+#optionsTwo li:first-child {
     border-right: solid 2px black;
 }
 
-#options li:first-child {
-    border-left: 0px;
+#optionsTwo li:last-child {
+    border-left: solid 2px black;
 }
-
-#optionsTwo li {
-    width: 52px;
-    height: 40px;
-    border: solid 1px black;
-}  
 
 #options p, #optionsTwo p {
     pointer-events: none;
     text-decoration: none;
 }
 
-#Arrow, #Arrow2, #Arrow3, #Arrow4, #Arrow5 {
-    position: absolute;
-    width: 15px;
-    height: 15px;
-    margin-top: 7px;
-    margin-right: 27px;
+#optionsTwo p {
+    font-size: 9px;
+    padding-top: 2px;
+}
+
+#options img, #optionsTwo img {
+    width: 12px;
+    height: 12px;
+    margin-top: 9px;
     pointer-events: none;
 }
 
-#Arrow2, #Arrow5 {
-    margin-right: 37px;
-}
-
 .active {
-    background-color: rgb(253, 160, 53);
+    background-color: rgb(255, 143, 78);
 }
 
 .active img {
-    visibility: visible;
+    display: block;
 }
 
-.BGtransformation {
-    background-color: rgb(253, 160, 53);
-}
-
-.colorChange {
+.active p {
     color: white;
-    transform: translateX(5px);
+}
+
+.hidden {
+    display: none;
 }
 
 .invisible {
@@ -196,8 +187,9 @@ html, body {
 }
 
 .textStyle {
-    background-color: transparent;
+    width: 140px;
     border: none;
+    background-color: transparent;
     border-bottom: solid 1px black;
     resize: none;
 }
@@ -206,7 +198,7 @@ html, body {
     background-color: rgb(64, 115, 255);
 }
 
-textarea:focus, input:focus, select:focus  {
+textarea:focus, input:focus, select:focus {
     box-shadow: 0 0 0 0;
     border: 0 none;
     outline: 0;
@@ -220,4 +212,41 @@ textarea:focus, input:focus, select:focus  {
 #error, #error2, #error3, #error4, #error5, #error6 {
     font-size: 9px;
     color: red;
+}
+
+#buttons {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 400px;
+    height: 40px;
+}
+
+#buttons button {
+    width: 170px;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#clear {
+    background-color: transparent;
+    border: solid 1px black;
+    border-radius: 10px;
+}
+
+#submit {
+    border: solid 1px transparent;
+    border-radius: 10px;
+}
+
+.submit-disable {
+    background-color: rgb(139, 139, 139);
+    pointer-events: none;
+}
+
+.submit-active {
+    background-color: rgb(255, 143, 78);
+    pointer-events: all;
 }

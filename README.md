@@ -45,3 +45,12 @@ HTML:
  - melhora nas funções do script, código mais leve e implementação de armazenamento dos ids e um
  array, ficando um pouco melhor
  - forma de captar o id através de um evento de mouse que o busca e faz as validações necessárias
+
+12/02/2022 changes:
+
+ - melhora no codigo de validação de pré/pós/fixado;
+ - adição da lógica do botão de simular;
+
+passos futuros:
+
+ - conexão da api com o front-end;
