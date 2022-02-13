@@ -20,6 +20,7 @@ html, body {
     height: 600px;
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
     flex-wrap: wrap;
 }
 
@@ -62,6 +63,7 @@ html, body {
     flex-direction: row;
     justify-content: space-between;
     flex-wrap: wrap;
+    pointer-events: none;
 }
 
 .simulator p {
@@ -75,9 +77,25 @@ html, body {
     margin-top: 5px;
 }
 
+.info {
+    position: absolute;
+    display: none;
+    height: 50px;
+    font-size: 10px;
+    color: white;
+    word-break: break-all;
+    background-color: rgb(255, 210, 128);
+}
+
+.infoIcon:hover .info {
+    display: block;
+}
+
 .infoIcon img {
     width: 17px;
     height: 17px;
+    pointer-events: all;
+    cursor: help;
 }
 
 #options, #optionsTwo {
@@ -92,6 +110,7 @@ html, body {
     padding: 0;
     width: 147px;
     overflow: hidden;
+    pointer-events: all;
 }
 
 #options li, #optionsTwo li {
@@ -186,7 +205,7 @@ html, body {
     pointer-events: none;
 }
 
-.textStyle {
+input {
     width: 140px;
     border: none;
     background-color: transparent;
@@ -194,11 +213,11 @@ html, body {
     resize: none;
 }
 
-.textStyle::selection {
+input::selection {
     background-color: rgb(64, 115, 255);
 }
 
-textarea:focus, input:focus, select:focus {
+input:focus, input:focus, select:focus {
     box-shadow: 0 0 0 0;
     border: 0 none;
     outline: 0;
@@ -249,4 +268,38 @@ textarea:focus, input:focus, select:focus {
 .submit-active {
     background-color: rgb(255, 143, 78);
     pointer-events: all;
+}
+
+
+@media screen and (max-width: 850px) {
+    .calculator {
+        flex-direction: row;
+        justify-content: space-around;
+    }
+
+    #buttons {
+        width: 80%;
+        max-width: 170px;
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+@media  screen and (max-width: 450px) {
+    .container {
+        height: 100%;
+    }
+    .calculator {
+        height: 100vh;
+        width: 100%;
+        margin-left: 0;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+
+    #buttons {
+        flex-direction: column;
+        width: 10%;
+        max-width: 170px;
+    }
 }

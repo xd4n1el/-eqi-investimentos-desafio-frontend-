@@ -13,6 +13,18 @@ dentro desta workspace você encontrará:
  e a estrutura HTML;
  - além do README.md para detalhamento dos meus passos no desafio.
 
+
+ # FORMA DE USO:
+
+ - todos os campos devem ser marcados e preenchidos, caso contrário gerará um erro;
+ - caso algum campo de texto ser preenchido com um valor contrário do requisitado, gerará um erro;
+ - formatações automáticas, sem necessidade de preenchimento à risca;
+ - botão de limpar campos reinicia todos os valores;
+ - botão de simular só é ativado após total preenchimento do formulário;
+ - valores em campos de porcentagem devem ser preenchidos com um intervalo entre 0 e 1;
+
+
+
 HTML:
 
  - contém uma estrutura padrão, sendo que cada elemento
@@ -51,6 +63,9 @@ HTML:
  - melhora no codigo de validação de pré/pós/fixado;
  - adição da lógica do botão de simular;
 
-passos futuros:
+13/02/2022 changes:
 
- - conexão da api com o front-end;
+ - front-end concluído;
+ - funções de formatação inclídas e melhores códigos adicionados;
+ - botão simular funcionando corretamente;
+ - design responsivo bem simples;
