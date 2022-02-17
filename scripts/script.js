@@ -1,57 +1,38 @@
-function changeOptionStyle() {
-  const options = document.getElementById("options");
+const options = document.getElementById("options");
+const optionsTwo = document.getElementById("optionsTwo");
+const submitButton = document.getElementById("submit");
+const clearButton = document.getElementById("clear");
 
-  options.addEventListener("click", function (e) {
-    const currentElement = e.target;
-    const nextBrother = currentElement.nextElementSibling;
-    const prevBrother = currentElement.previousElementSibling;
+function tradingSibblingElements(e) {
+  const currentElement = e.target;
+  let nextBrother = currentElement.nextElementSibling;
+  let prevBrother = currentElement.previousElementSibling;
 
-    if (prevBrother != null && prevBrother.classList.contains("active")) {
+  currentElement.classList.toggle("active");
+
+  while (prevBrother) {
+    if (prevBrother.classList.contains("active")) {
       prevBrother.classList.toggle("active");
-      currentElement.classList.toggle("active");
-    } else if (
-      nextBrother != null &&
-      nextBrother.classList.contains("active")
-    ) {
-      nextBrother.classList.toggle("active");
-      currentElement.classList.toggle("active");
-    } else {
-      currentElement.classList.toggle("active");
     }
-  });
+
+    prevBrother = prevBrother.previousElementSibling;
+  }
+
+  while (nextBrother) {
+    if (nextBrother.classList.contains("active")) {
+      nextBrother.classList.toggle("active");
+    }
+
+    nextBrother = nextBrother.nextElementSibling;
+  }
 }
 
-function changeOtherOptionStyle() {
-  const options = document.getElementById("optionsTwo");
-
-  options.addEventListener("click", function (e) {
-    const currentElement = e.target;
-    let nextBrother = currentElement.nextElementSibling;
-    let prevBrother = currentElement.previousElementSibling;
-
-    currentElement.classList.toggle("active");
-
-    while (prevBrother) {
-      if (prevBrother.classList.contains("active")) {
-        prevBrother.classList.toggle("active");
-      }
-
-      prevBrother = prevBrother.previousElementSibling;
-    }
-
-    while (nextBrother) {
-      if (nextBrother.classList.contains("active")) {
-        nextBrother.classList.toggle("active");
-      }
-
-      nextBrother = nextBrother.nextElementSibling;
-    }
-  });
+function changeOptionStyle() {
+  options.addEventListener("click", tradingSibblingElements)
+  optionsTwo.addEventListener("click", tradingSibblingElements)
 }
 
 function validateSubmitButton() {
-  const btn = document.getElementById("submit");
-
   const inputs = Array.from(document.querySelectorAll("input"));
   const errorClasses = document.querySelectorAll(".red");
   const isVisible = document.querySelectorAll(".visible");
@@ -76,16 +57,13 @@ function validateSubmitButton() {
   }
 
   if (formValidate) {
-    btn.classList.add("submit-active");
+    submitButton.classList.add("submit-active");
   } else {
-    btn.classList.remove("submit-active");
+    submitButton.classList.remove("submit-active");
   }
 }
 
 function executeSubmitButton() {
-  const options = document.getElementById("options");
-  const optionsTwo = document.getElementById("optionsTwo");
-
   const input = document.querySelectorAll("input");
 
   input.forEach((e) => e.addEventListener("blur", validateSubmitButton));
@@ -94,41 +72,37 @@ function executeSubmitButton() {
 }
 
 function formatPrice(e) {
-    const currentTarget = e.target;
+  const currentTarget = e.target;
 
-    if(isNaN(currentTarget.value || currentTarget.value == '' )) {
-        currentTarget.value = currentTarget.value
-    } else {
-        const format = parseFloat(currentTarget.value);
-        const inputMask = format.toLocaleString("pt-br", {
-            style: "currency",
-            currency: "BRL",
-        });
-        currentTarget.value = inputMask;
-    }
+  if (!isNaN(currentTarget.value && !currentTarget.value == "")) {
+    const format = parseFloat(currentTarget.value);
+    const inputMask = format.toLocaleString("pt-br", {
+      style: "currency",
+      currency: "BRL",
+    });
+    currentTarget.value = inputMask;
+  }
 }
 
 function formatPercentage(e) {
-    const currentTarget = e.target;
+  const currentTarget = e.target;
 
-    if(isNaN(currentTarget.value) || currentTarget.value == '') {
-        currentTarget.value = currentTarget.value
-    } else {
-    const format = parseFloat(currentTarget.value); 
+  if (!isNaN(currentTarget.value) && currentTarget.value != "") {
+    const format = parseFloat(currentTarget.value);
     const inputMask = format.toLocaleString("pt-br", {
-        style: "percent",
-        useGrouping: false
-    });    
+      style: "percent",
+      useGrouping: false,
+    });
     currentTarget.value = inputMask;
-    }
+  }
 }
 
 function inputFormater() {
-    const priceInputs = document.querySelectorAll('.price');
-    priceInputs.forEach(e => e.addEventListener('blur', formatPrice));
-    
-    const percentageInputs = document.querySelectorAll('.percentage');
-    percentageInputs.forEach(e => e.addEventListener('blur', formatPercentage));
+  const priceInputs = document.querySelectorAll(".price");
+  priceInputs.forEach((e) => e.addEventListener("blur", formatPrice));
+
+  const percentageInputs = document.querySelectorAll(".percentage");
+  percentageInputs.forEach((e) => e.addEventListener("blur", formatPercentage));
 }
 
 function validateInput(input) {
@@ -137,14 +111,13 @@ function validateInput(input) {
   const isVisible = actualInput.nextElementSibling;
 
   actualInput.addEventListener("keyup", function (e) {
-  
     if (isNaN(actualInput.value) && actualInput.value.length > 0) {
-        errorClasses.classList.add("red");
-        isVisible.classList.add("visible");
+      errorClasses.classList.add("red");
+      isVisible.classList.add("visible");
     } else {
-        errorClasses.classList.remove("red");
-        isVisible.classList.remove("visible");
-    }
+      errorClasses.classList.remove("red");
+      isVisible.classList.remove("visible");
+    } 
   });
 }
 
@@ -169,33 +142,141 @@ function executeInput(name) {
     const currentElement = e.target;
     const id = currentElement.id;
     validateInput(id);
-
   });
 }
 
-function cleanButton() {
-  const btn = document.getElementById("clear");
+function createNode(element) {
+  return document.createElement(element);
+}
 
-  btn.addEventListener("click", function () {
+function append(parent, el) {
+  return parent.appendChild(el);
+}
+
+function getFormatedName(text) {
+    switch (text) {
+      case 'tipoIndexacao':
+        return 'Tipo Indexacao';
+      case 'tipoRendimento':
+        return 'Tipo Rendimento';
+      case 'valorFinalBruto':
+        return 'Valor Final Bruto';
+      case 'aliquotaIR':
+        return 'Aliquota IR';
+      case 'valorPagoIR':
+        return 'Valor Pago IR';
+      case 'valorTotalInvestido':
+        return 'Valor Total Investido'
+      case 'valorFinalLiquido':
+        return 'Valor Final Liquido'
+      case 'ganhoLiquido':
+        return 'Ganho Liquido';
+    }
+}
+
+function checkingResources(dataValues) {
+  const ul = document.getElementById("apiList");
+
+  dataValues.map(function (dataValues) {
+    for (let data in dataValues) {
+      let values = dataValues[data]
+
+      if(!isNaN(values)) {
+        let li = createNode("li");
+        let p = createNode("p");
+        let p2 = createNode("p");
+
+        let formatedName = getFormatedName(data)
+        p.innerHTML = formatedName;
+
+        if(data == 'aliquotaIR') {
+          values = values.toLocaleString("pt-br", {
+          style: "percent",
+          });
+          p2.innerHTML = values;
+        } else {
+          values = values.toLocaleString("pt-br", {
+            style: "currency",
+            currency: "BRL",
+          })
+          p2.innerHTML = values;
+        } 
+
+        append(li, p);
+        append(li, p2);
+        append(ul, li);
+      }
+    }
+  })
+}
+
+function callApi(indexacao, rendimento) {
+  options.addEventListener('click', function(e) {
+    let currentTarget = e.target;
+    rendimento = currentTarget.id
+  })
+
+  optionsTwo.addEventListener('click', function(e) {
+    let currentTarget = e.target
+    indexacao = currentTarget.id
+  })
+  
+  const apiShow = document.querySelector('.api')
+  
+  submitButton.addEventListener("click", function () {
+    apiShow.classList.add('api-show')
+
+    // como os indicadores não afetam a pesquisa na API, decidi nao os inserir, mas seria a mesma prática
+
+    fetch(`http://localhost:3000/simulacoes?tipoIndexacao=${indexacao}&tipoRendimento=${rendimento}`)
+    .then((resp) => resp.json())
+    .then(function (data) {
+            checkingResources(data)
+          })
+          .catch(function (error) {
+      console.log(error);
+    });
+  });
+}
+
+function removeNode() {
+  let list = document.getElementById('apiList');
+  let apiShow = document.querySelector('.api')
+  list.innerHTML = ''
+  apiShow.classList.remove('api-show');
+}
+
+function cleanButton() {
     const errorClasses = document.querySelectorAll(".red");
     const inputs = document.querySelectorAll("input");
     const isVisible = document.querySelectorAll(".visible");
     const isActive = document.querySelectorAll(".active");
-    const submitBtn = document.getElementById("submit");
+    const ipca = document.getElementById('ipca')
+    const cdi = document.getElementById('cdi')
 
-    errorClasses.forEach((redClass) => redClass.classList.remove("red"));
+    errorClasses.forEach((errorClass) => errorClass.classList.remove("red"));
     inputs.forEach((input) => (input.value = ""));
     isVisible.forEach((errorMsg) => errorMsg.classList.remove("visible"));
     isActive.forEach((activeItems) => activeItems.classList.toggle("active"));
-    submitBtn.classList.remove("submit-active");
-  });
+    submitButton.classList.remove("submit-active");
+    cdi.value = 9.18 + '%'
+    ipca.value = 10.06 + '%'
+    removeNode()
 }
 
+function cleanButtons() {
+  let newSimulation = document.getElementById('newSimulation')
+
+  clearButton.addEventListener('click', cleanButton)
+  newSimulation.addEventListener('click', cleanButton)
+}
+
+
 changeOptionStyle();
-changeOtherOptionStyle();
 executeInput("findInput");
 executeInput("findInput2");
 checkTab();
-cleanButton();
 executeSubmitButton();
-inputFormater()
+inputFormater();
+callApi();
+cleanButtons();

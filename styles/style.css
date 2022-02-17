@@ -100,23 +100,19 @@ html, body {
 
 #options, #optionsTwo {
     display: flex;
-    justify-content: space-between;
-    flex-direction: row;
-    width: 147px;
-    height: 31px;
-    border: solid 1px black;
-    border-radius: 5px;
-    margin: 0;
+    width: 150px;
+    height: 35px;
     padding: 0;
-    width: 147px;
-    overflow: hidden;
+    margin: 0;
     pointer-events: all;
 }
 
 #options li, #optionsTwo li {
     list-style: none;
     display: flex;
+    justify-content: space-between;
     flex-direction: row;
+    border: solid 1px black;
     justify-content: center;
     flex-wrap: nowrap;
     cursor: pointer;
@@ -126,21 +122,31 @@ html, body {
     width: 75px;
 }
 
-#options li:last-child {
-    border-left: solid 2px black;
+#options li:first-child {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
 }
 
-
-#optionsTwo li {
-    width: 55px;
+#options li:last-child {
+    border-left: solid 2px black;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
 }
 
 #optionsTwo li:first-child {
     border-right: solid 2px black;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
 }
 
 #optionsTwo li:last-child {
     border-left: solid 2px black;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+#optionsTwo li {
+    width: 55px;
 }
 
 #options p, #optionsTwo p {
@@ -211,6 +217,7 @@ input {
     background-color: transparent;
     border-bottom: solid 1px black;
     resize: none;
+    pointer-events: all;
 }
 
 input::selection {
@@ -253,6 +260,21 @@ input:focus, input:focus, select:focus {
     background-color: transparent;
     border: solid 1px black;
     border-radius: 10px;
+    pointer-events: all;
+}
+
+#newSimulation {
+    position: absolute;
+    display: none;
+    width: 300x;
+    height: 60px;
+    background-color: rgb(255, 143, 78);
+    border-radius: 10px;
+    pointer-events: all;
+    margin-top: 400px;
+    margin-left: 40%;
+    color: white;
+    border: solid 1px transparent;
 }
 
 #submit {
@@ -270,6 +292,89 @@ input:focus, input:focus, select:focus {
     pointer-events: all;
 }
 
+.api {
+    margin-right: 20px;
+    width: 60%;
+    max-width: 900px;
+    height: 430px;
+    display: none;
+}
+
+.api-show {
+    transition: all 1s;
+    display: block;
+}
+
+.api p {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#apiList {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 0;
+    justify-content: space-between;
+    width: 90%;
+    max-width: 830px;
+    height: 250px;
+}
+
+
+#apiList li {
+    width: 25%;
+    max-width: 200px;
+    height: 90px;
+    background-color: rgb(247, 247, 247);
+    border: solid 4px rgba(204, 204, 204, 50%);
+    border-radius: 5px;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+#apiList p {
+    font-size: 14px;
+}
+
+#apiList li p:first-child {
+    font-weight: bold;
+}
+
+@media screen and (max-width: 1250px) {
+    .api {
+        width: 60%;
+    }
+    #apiList {
+        height: 80%;
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 1150px) {
+    .api {
+        z-index: 10;
+        position: absolute;
+        margin-top: 60px;
+        margin-left: 40px;
+        height: 65%;
+        width: 87%;
+        background-color: rgb(240, 240, 240);
+    }
+
+    #apiList {
+        width: 85%;
+        margin-left: 15px;
+    }
+
+    #newSimulation {
+        display: block;
+    }
+}
 
 @media screen and (max-width: 850px) {
     .calculator {
@@ -283,6 +388,27 @@ input:focus, input:focus, select:focus {
         display: flex;
         justify-content: space-between;
     }
+
+    .api {
+        width: 80%;
+        height: 70%;
+    }
+
+    #apiList {
+        width: 70%;
+    }
+
+    #apiList li {
+        width: 45%;
+    }
+
+    .api p {
+        font-size: 16px;
+    }
+
+    #newSimulation {
+        margin-left: 35%;
+    }
 }
 
 @media  screen and (max-width: 450px) {
@@ -290,16 +416,57 @@ input:focus, input:focus, select:focus {
         height: 100%;
     }
     .calculator {
-        height: 100vh;
-        width: 100%;
+        height: 1000px;
+        width: 60%;
         margin-left: 0;
         flex-direction: column;
-        justify-content: space-around;
+        align-items: center;
     }
 
     #buttons {
         flex-direction: column;
-        width: 10%;
-        max-width: 170px;
+    }
+
+    .api {
+        margin-left: 0;
+        height: 1000px;
+    }
+
+    #apiList {
+        width: 60%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    #apiList li {
+        width: 100%;
+    }
+
+    #newSimulation {
+        margin-top: 1020px;
+        margin-left: 100px;
+    }
+}
+
+@media screen and (max-width: 350px) {
+    .container {
+        display: flex;
+        justify-content: flex-start;
+        width: 80%;
+        margin-left: 0;
+        padding: 0;
+    }
+
+    .calculator {
+        width: 40%;
+    }
+
+    .api {
+        width: 100%;
+    }
+
+    #apiList {
+        width: 80%;
     }
 }

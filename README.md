@@ -69,3 +69,18 @@ HTML:
  - funções de formatação inclídas e melhores códigos adicionados;
  - botão simular funcionando corretamente;
  - design responsivo bem simples;
+
+16/02/2022 changes:
+
+ - projeto finalizado;
+ - conexão do front e a api concluída, dados retornando 100%;
+ - formatações de texto concluídas;
+ - 100% funcional em todas as funcionalidades;
+
+
+
+
+ # o que não foi feito:
+
+ - gráfico;
+ - header
