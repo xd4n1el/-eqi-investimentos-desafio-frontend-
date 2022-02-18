@@ -74,7 +74,7 @@ function executeSubmitButton() {
 function formatPrice(e) {
   const currentTarget = e.target;
 
-  if (!isNaN(currentTarget.value && !currentTarget.value == "")) {
+  if (!isNaN(currentTarget.value) && currentTarget.value != '') {
     const format = parseFloat(currentTarget.value);
     const inputMask = format.toLocaleString("pt-br", {
       style: "currency",
@@ -87,7 +87,7 @@ function formatPrice(e) {
 function formatPercentage(e) {
   const currentTarget = e.target;
 
-  if (!isNaN(currentTarget.value) && currentTarget.value != "") {
+  if (!isNaN(currentTarget.value) && currentTarget.value != '') {
     const format = parseFloat(currentTarget.value);
     const inputMask = format.toLocaleString("pt-br", {
       style: "percent",
@@ -114,11 +114,10 @@ function validateInput(input) {
     if (isNaN(actualInput.value) && actualInput.value.length > 0) {
       errorClasses.classList.add("red");
       isVisible.classList.add("visible");
-    } else {
+    } else
       errorClasses.classList.remove("red");
       isVisible.classList.remove("visible");
-    } 
-  });
+    });
 }
 
 function checkTab() {
