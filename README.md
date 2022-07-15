@@ -10,8 +10,7 @@ dentro desta workspace você encontrará:
  - uma pasta com as imagens usadas;
  - uma pasta com os scripts;
  - uma pasta com os css's;
- e a estrutura HTML;
- - além do README.md para detalhamento dos meus passos no desafio.
+ - estrutura HTML;
 
 
  # FORMA DE USO:
